@@ -1,5 +1,9 @@
 package com.mk.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.google.gson.Gson;
+
 public class StringResponse {
     private String parameter;
     private int length;
@@ -166,5 +170,15 @@ public class StringResponse {
         stringBuilder.append(",");
         stringBuilder.append(specialCharacters);
         return stringBuilder.toString();
+    }
+
+    public String toJSON() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public String toXML() throws JsonProcessingException {
+        XmlMapper xmlMapper = new XmlMapper();
+        return xmlMapper.writeValueAsString(this);
     }
 }

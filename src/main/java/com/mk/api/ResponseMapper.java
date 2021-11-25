@@ -11,18 +11,17 @@ import java.util.Map;
 
 public class ResponseMapper {
 
-    public static String fromJsonToStringResponse(String json) {
+    public static StringResponse fromJsonToStringResponse(String json) {
         Gson gson = new Gson();
-        return gson.fromJson(json, StringResponse.class).toString();
+        return gson.fromJson(json, StringResponse.class);
     }
 
-    public static String fromXmlToStringResponse(String xml) throws JsonProcessingException {
+    public static StringResponse fromXmlToStringResponse(String xml) throws JsonProcessingException {
         XmlMapper xmlMapper = new XmlMapper();
-        StringResponse value = xmlMapper.readValue(xml, StringResponse.class);
-        return value.toString();
+        return xmlMapper.readValue(xml, StringResponse.class);
     }
 
-    public static String fromCsvToStringResponse(String csv) {
+    public static StringResponse fromCsvToStringResponse(String csv) {
         List<String> csvList = Arrays.asList(csv.split("\n"));
         List<String> parametersName = Arrays.asList(csvList.get(0).split(","));
         List<String> parameters = Arrays.asList(csvList.get(1).split(","));
@@ -37,10 +36,10 @@ public class ResponseMapper {
         stringResponse.setLowerCase(Long.valueOf(map.get("lowerCase")));
         stringResponse.setWhitespace(Long.valueOf(map.get("whitespace")));
         stringResponse.setSpecialCharacters(Long.valueOf(map.get("specialCharacters")));
-        return stringResponse.toString();
+        return stringResponse;
     }
 
-    public static String fromTextToStringResponse(String text) {
+    public static StringResponse fromTextToStringResponse(String text) {
         List<String> list = Arrays.asList(text.split("\n"));
         Map<String, String> map = new HashMap<>();
         for (int i = 0; i < list.size(); i++) {
@@ -54,6 +53,6 @@ public class ResponseMapper {
         stringResponse.setLowerCase(Long.valueOf(map.get("lowerCase")));
         stringResponse.setWhitespace(Long.valueOf(map.get("whitespace")));
         stringResponse.setSpecialCharacters(Long.valueOf(map.get("specialCharacters")));
-        return stringResponse.toString();
+        return stringResponse;
     }
 }
