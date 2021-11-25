@@ -20,7 +20,9 @@ public class RestFormatAPI {
     //    coDostajeUser/coWsyłamyDoZadania3
     @GetMapping("/text/{format}/{parameter}" )
     public String responseAsText(@PathVariable("format") String format, @PathVariable("parameter") String parameter) throws JsonProcessingException {
-        return ResponseMapper.fromXmlToStringResponse(restService.getStringInformation(parameter,format)) ;
+        return ResponseMapper.fromTextToStringResponse(restService.getStringInformation(parameter,format)) ;
+//        return ResponseMapper.fromCsvToStringResponse(restService.getStringInformation(parameter,format)) ;
+//        return ResponseMapper.fromXmlToStringResponse(restService.getStringInformation(parameter,format)) ;
 //        return ResponseMapper.fromJsonToStringResponse(restService.getStringInformation(parameter,format)) ;
     }
 
